@@ -12,7 +12,7 @@ function animatedForm() {
                 nextSlide(parent, nextForm);
             } else if (input.type === 'email' && validateEmail(input)) {
                 nextSlide(parent, nextForm);
-            } else if (input.type === 'password' && validateUser(input)) {
+            } else if (input.type === 'password' && validatePass(input)) {
                 nextSlide(parent, nextForm);
             } else {
                 parent.style.animation = "shake 0.5s ease";
@@ -27,7 +27,16 @@ function animatedForm() {
 
 function validateUser(user) {
     if (user.value.length < 6) {
-        console.log("Not enough characters!");
+        showToast("Not enough characters!");
+        error('rgb(189,87,87)');
+    } else {
+        error('rgb(87,189,130)');
+        return true;
+    }
+}
+function validatePass(pass) {
+    if (pass.value.length < 6) {
+        showToast("Longer password required!");
         error('rgb(189,87,87)');
     } else {
         error('rgb(87,189,130)');
@@ -43,7 +52,7 @@ function validateEmail(email) {
         return true;
     } else {
         error('rgb(189,87,87)');
-        console.log("Enter a valid email address!");
+        showToast("Enter a valid email address!");
     }
 
 }
@@ -56,6 +65,16 @@ function nextSlide(parent, nextForm) {
     parent.classList.add('inactive');
     parent.classList.remove('active');
     nextForm.classList.add('active');
+}
+
+function showToast(message) {
+    const toast = document.getElementById("snackbar");
+    toast.innerText = message;
+    // Add the "show" class to DIV
+    toast.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
 }
 
 animatedForm();
