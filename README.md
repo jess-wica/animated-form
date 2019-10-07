@@ -9,3 +9,5 @@ Create an animated login form that validates user input for a username, email an
 * Form field manipulation using HTML, CSS and JavaScript
 * Shake animation in CSS
 * User input validation with JavaScript
+
+[View here](https://jess-wica.github.io/animated-form/)
